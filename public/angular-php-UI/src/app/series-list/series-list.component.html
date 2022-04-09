@@ -1,0 +1,9 @@
+<h3>List of Series I have watched:</h3>
+
+
+<ul>
+    <li *ngFor="let movie of series">
+        <a routerLink="/series/{{movie._id}}">{{movie.title}}</a> &nbsp; &nbsp;<br><br>
+    </li>
+</ul>
+ 

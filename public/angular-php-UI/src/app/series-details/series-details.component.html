@@ -1,0 +1,10 @@
+<span *ngIf="series" >
+    <h1>Title-{{series.title}}</h1>
+    <h3>Year : {{series.year}} </h3>
+    <h3>Cast : </h3>
+    <ul>
+        <li *ngFor="let cast of series.cast">
+            {{cast.name}}( {{cast.age}})
+        </li>
+    </ul>
+</span>
