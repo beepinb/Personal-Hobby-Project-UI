@@ -10,7 +10,7 @@ import { Cast } from '../series-list/series-list.component';
 })
 export class CastDetailComponent implements OnInit {
 
-
+flag:boolean=false;
   cast!:Cast;
 
   constructor( private seriesService: SeriesDataService,
@@ -19,6 +19,10 @@ export class CastDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOneCast();
+  }
+
+  editFlag():void{
+    this.flag=true;
   }
 
   getOneCast():void{
@@ -42,6 +46,29 @@ export class CastDetailComponent implements OnInit {
         next:cast=>{
           console.log("Cast Deleted");
           this.router.navigate(['series/',seriesId]);
+        }
+      }
+    )
+  }
+
+  editCast():void{
+    console.log("Inside Edit Cast");
+    // this.flag=true;
+    const seriesId = this.route.snapshot.params['seriesId'];
+    const castId = this.route.snapshot.params['castId'];
+    this.seriesService.editOneCast(seriesId,castId,this.cast).subscribe(
+      {
+        next:cast=>{
+          console.log("Cast Updated Sucessfully");
+          
+        },
+        error:err=>{
+          console.log("Service Error on EditCast",err);
+        },
+        complete:()=>{
+          console.log("Completed");
+          this.flag=false;
+          this.router.navigate(['series/'+seriesId+'/cast/'+castId])
         }
       }
     )

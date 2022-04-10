@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeriesDataService } from '../series-data.service';
 import { Cast, Series } from '../series-list/series-list.component';
@@ -10,7 +11,12 @@ import { Cast, Series } from '../series-list/series-list.component';
 })
 export class CastDetailsComponent implements OnInit {
 
+
+  @ViewChild('addCastForm')
+  addCastForm!:NgForm;
+
   casts!:Cast[];
+  flag:boolean=false;
 
   constructor(private seriesService: SeriesDataService,
     private route: ActivatedRoute,
@@ -18,6 +24,13 @@ export class CastDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.showAllCast();
+  }
+  editFlag():void{
+    if(!this.flag){
+      this.flag=true;
+    }else{
+      this.flag=false;
+    }
   }
 
   showAllCast():void{
@@ -44,6 +57,52 @@ export class CastDetailsComponent implements OnInit {
   viewDetail():void{
     console.log("Inside view Detail of one cast");
     
+  }
+
+  addCast(addCastForm:NgForm):void{
+    // this.flag=true;
+    console.log("Inside Add Cast");
+    const seriesId = this.route.snapshot.params['seriesId'];
+    const formData={
+      name:this.addCastForm.value.name,
+      age:this.addCastForm.value.age
+    }
+    this.seriesService.addOneCast(seriesId,formData).subscribe({
+      next:cast=>{
+        console.log("Cast Added",cast);
+      },
+      error:err=>{
+        console.log("Error",err);
+      },
+      complete:()=>{
+        console.log("Complete");
+        this.flag=false;
+        this.showAllCast();
+        // this.router.navigate(['series/'+seriesId]);
+      }
+    })    
+  }
+
+  deleteCast(castId:string):void{
+    const seriesId = this.route.snapshot.params['seriesId'];
+    // const castId = this.route.snapshot.params['castId'];
+    console.log("Cast Id:",castId);
+    
+    this.seriesService.deleteCast(seriesId,castId).subscribe(
+      {
+        next:series=>{
+          console.log("Cast deleted Sucessfully");
+      },
+        error: (err) => {
+          console.log('Service Error', err);
+        },
+        complete: () => {
+          console.log('Completed');
+          alert("Cast deleted Sucessfully");
+          this.showAllCast();
+        }
+      }
+    )
   }
 
 

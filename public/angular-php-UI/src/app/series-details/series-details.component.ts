@@ -78,22 +78,13 @@ export class SeriesDetailsComponent implements OnInit {
   }
 
   
-  // editSeries(seriesData:Series):void{
 
-  //   this.seriesService.editSeries(seriesData._id,seriesData).subscribe(
-  //     {
-  //       next:series=>{
-  //         console.log("Inside editSeries",series);
-  //         this.series=series;
-  //       },
-  //       error:err=>{
-  //         console.log("Service Error",err);
-  //       },
-  //       complete:()=>{
-  //         console.log("Complete");
-  //       }
-  //     }
-  //   )
-  // }
+  
+  editSeries():void{
+    this.seriesService.seriesSetter(this.series);
+    this.router.navigate(['edit/'+this.series._id]);
+
+    
+  }
 
 }

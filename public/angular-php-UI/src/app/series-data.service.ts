@@ -7,6 +7,8 @@ import { Cast, Series } from './series-list/series-list.component';
   providedIn: 'root'
 })
 export class SeriesDataService {
+  series!:Series;
+  
 
   private baseUrl:string="http://localhost:5656/api/";
 
@@ -31,7 +33,7 @@ export class SeriesDataService {
   public editSeries(seriesId:string,seriesData:any):Observable<Series>{
     const url:string=this.baseUrl+"tvseries/"+seriesId;
     console.log("Inside Service editSeries",seriesData);
-    return this.http.patch<Series>(url,seriesData);
+    return this.http.put<Series>(url,seriesData);
   }
 
   public deleteSeries(seriesId:string):Observable<Series>{
@@ -48,8 +50,23 @@ export class SeriesDataService {
     const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast/"+actorId;
     return this.http.get<Cast>(url);
   }
+  public addOneCast(seriesId:string,castData:any):Observable<Cast>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast";
+    return this.http.post<Cast>(url,castData);
+  }
+  public editOneCast(seriesId:string,actorId:string,castData:Cast):Observable<Cast>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast/"+actorId;
+    return this.http.put<Cast>(url,castData);
+  }
   public deleteCast(seriesId:string,actorId:string):Observable<Cast>{
     const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast/"+actorId;
     return this.http.delete<Cast>(url);
+  }
+
+  seriesSetter(series: Series) {
+    this.series=series;
+  }
+  seriesGetter():Series{
+    return this.series;
   }
 }
