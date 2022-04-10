@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SeriesDataService } from '../series-data.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AddSeriesComponent implements OnInit {
   @ViewChild('registrationForm')
   registrationForm!:NgForm;
 
-  constructor(private seriesData:SeriesDataService) { }
+  constructor(private seriesData:SeriesDataService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +40,8 @@ export class AddSeriesComponent implements OnInit {
       },
       complete:()=>{
         console.log("Complete");
-        
+        alert("Series Added Sucessfully");
+        this.router.navigate(['series']);
       }
     })
 

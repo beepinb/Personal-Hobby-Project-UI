@@ -16,7 +16,6 @@ import { AddSeriesComponent } from './add-series/add-series.component';
 import { EditSeriesComponent } from './edit-series/edit-series.component';
 import { CastDetailsComponent } from './cast-details/cast-details.component';
 import { CastDetailComponent } from './cast-detail/cast-detail.component';
-import { AddCastComponent } from './add-cast/add-cast.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { AddCastComponent } from './add-cast/add-cast.component';
     AddSeriesComponent,
     EditSeriesComponent,
     CastDetailsComponent,
-    CastDetailComponent,
-    AddCastComponent
+    CastDetailComponent
   ],
   imports: [
     BrowserModule,
