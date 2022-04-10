@@ -2,24 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { SeriesDataService } from '../series-data.service';
 
 export class Series{
-  #_id!:string;
-  #title!:string;
-  #year!:number;
+  _id!:string;
+  title!:string;
+  year!:number;
   // #cast!:[];
-  #cast!:[{name:"",age:"",_id:""}];
+  cast!:[{name:"",age:"",_id:""}];
 
-  get _id(){
-    return this.#_id;
-  }
-  get title(){
-    return this.#title;
-  }
-  get year(){
-    return this.#year;
-  }
-  get cast(){
-    return this.#cast;
-  }
+  // get _id(){
+  //   return this.#_id;
+  // }
+  // get title(){
+  //   return this.#title;
+  // }
+  // get year(){
+  //   return this.#year;
+  // }
+  // get cast(){
+  //   return this.#cast;
+  // }
 
   // constructor(id:string,title:string,year:number){
   //   this.#_id=id;
@@ -29,7 +29,14 @@ export class Series{
   // }
 
 }
+export class Cast{
+  _id!:string;
+  name!:string;
+  age!:number;
+  // #cast!:[];
+  // cast!:[{name:"",age:"",_id:""}];
 
+}
 
 @Component({
   selector: 'app-series-list',

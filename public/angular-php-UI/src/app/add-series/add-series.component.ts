@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { SeriesDataService } from '../series-data.service';
 
 @Component({
   selector: 'app-add-series',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddSeriesComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('registrationForm')
+  registrationForm!:NgForm;
+
+  constructor(private seriesData:SeriesDataService) { }
 
   ngOnInit(): void {
+  }
+
+ 
+
+
+  register(registrationForm:NgForm):void{
+    console.log(registrationForm.value);
+    const formData={
+      title:this.registrationForm.value.title,
+      year:this.registrationForm.value.year,
+      cast:{
+        name:this.registrationForm.value.name,
+        age:this.registrationForm.value.age
+      }
+    }
+    this.seriesData.addSeries(formData).subscribe({
+      next:series=>{
+        console.log("Series Added",series);
+      },
+      error:err=>{
+        console.log("Error",err);
+      },
+      complete:()=>{
+        console.log("Complete");
+        
+      }
+    })
+
   }
 
 }

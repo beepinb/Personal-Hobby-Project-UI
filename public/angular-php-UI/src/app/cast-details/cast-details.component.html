@@ -1,0 +1,16 @@
+<h2>Cast Details</h2>
+<span>
+    <h3>Cast : </h3>
+    <ol>
+        <li *ngFor="let cast of casts">
+           
+           <h5>Name: {{cast.name}}  <button class="btn btn-primary" routerLink="{{cast._id}}">View Detail</button>  &nbsp;</h5>
+           <ul>
+            <li>
+                Age: {{cast.age}}
+            </li>
+        </ul>
+        </li>
+    </ol>
+
+    </span>

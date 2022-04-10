@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Series } from './series-list/series-list.component';
+import { Cast, Series } from './series-list/series-list.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,36 @@ export class SeriesDataService {
   public getSeries(seriesId:string):Observable<Series>{
     const url:string=this.baseUrl+"tvseries/"+seriesId;
     return this.http.get<Series>(url);
+  }
+
+  public addSeries(seriesData:any):Observable<Series>{
+    const url:string=this.baseUrl+"tvseries";
+    console.log("Inside Service AddSeries",seriesData);
+    return this.http.post<Series>(url,seriesData);
+  }
+
+  public editSeries(seriesId:string,seriesData:any):Observable<Series>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId;
+    console.log("Inside Service editSeries",seriesData);
+    return this.http.patch<Series>(url,seriesData);
+  }
+
+  public deleteSeries(seriesId:string):Observable<Series>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId;
+    return this.http.delete<Series>(url);
+  }
+
+  public getAllCast(seriesId:string):Observable<Cast[]>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast";
+    return this.http.get<Cast[]>(url);
+  }
+
+  public getOneCast(seriesId:string,actorId:string):Observable<Cast>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast/"+actorId;
+    return this.http.get<Cast>(url);
+  }
+  public deleteCast(seriesId:string,actorId:string):Observable<Cast>{
+    const url:string=this.baseUrl+"tvseries/"+seriesId+"/cast/"+actorId;
+    return this.http.delete<Cast>(url);
   }
 }

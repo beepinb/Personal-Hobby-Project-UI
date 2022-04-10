@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -13,6 +14,9 @@ import { SeriesListComponent } from './series-list/series-list.component';
 import { RegisterComponent } from './register/register.component';
 import { SeriesDetailsComponent } from './series-details/series-details.component';
 import { AddSeriesComponent } from './add-series/add-series.component';
+import { EditSeriesComponent } from './edit-series/edit-series.component';
+import { CastDetailsComponent } from './cast-details/cast-details.component';
+import { CastDetailComponent } from './cast-detail/cast-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +26,15 @@ import { AddSeriesComponent } from './add-series/add-series.component';
     ErrorPageComponent,
     SeriesListComponent,
     SeriesDetailsComponent,
-    AddSeriesComponent
+    AddSeriesComponent,
+    EditSeriesComponent,
+    CastDetailsComponent,
+    CastDetailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path:"",
@@ -42,7 +50,19 @@ import { AddSeriesComponent } from './add-series/add-series.component';
       },
       {
         path:"register",
-        component:RegisterComponent
+        component:AddSeriesComponent
+      },
+      {
+        path:"edit/:seriesId",
+        component:EditSeriesComponent
+      },
+      {
+        path:"series/:seriesId/cast",
+        component:CastDetailsComponent
+      },
+      {
+        path:"series/:seriesId/cast/:castId",
+        component:CastDetailComponent
       },
       {
         path:'**',
