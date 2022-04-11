@@ -5,37 +5,13 @@ export class Series{
   _id!:string;
   title!:string;
   year!:number;
-  // #cast!:[];
   cast!:[{name:"",age:"",_id:""}];
-
-  // get _id(){
-  //   return this.#_id;
-  // }
-  // get title(){
-  //   return this.#title;
-  // }
-  // get year(){
-  //   return this.#year;
-  // }
-  // get cast(){
-  //   return this.#cast;
-  // }
-
-  // constructor(id:string,title:string,year:number){
-  //   this.#_id=id;
-  //   this.#title=title;
-  //   this.#year=year;
-  //   // this.#cast=cast;
-  // }
 
 }
 export class Cast{
   _id!:string;
   name!:string;
   age!:number;
-  // #cast!:[];
-  // cast!:[{name:"",age:"",_id:""}];
-
 }
 
 @Component({

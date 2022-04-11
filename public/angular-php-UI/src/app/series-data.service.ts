@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Cast, Series } from './series-list/series-list.component';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class SeriesDataService {
   series!:Series;
   
 
-  private baseUrl:string="http://localhost:5656/api/";
+  private baseUrl:string=environment.REST_API_BASE;         //"http://localhost:5656/api/";
 
   constructor(private http:HttpClient) { }
 
