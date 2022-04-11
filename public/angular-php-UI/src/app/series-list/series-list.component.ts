@@ -45,6 +45,7 @@ export class Cast{
 })
 export class SeriesListComponent implements OnInit {
   series!:Series[];
+  searchTerm!: string;
 
   constructor(private seriesService:SeriesDataService) { }
 

@@ -78,14 +78,12 @@ export class CastDetailsComponent implements OnInit {
         console.log("Complete");
         this.flag=false;
         this.showAllCast();
-        // this.router.navigate(['series/'+seriesId]);
       }
     })    
   }
 
   deleteCast(castId:string):void{
     const seriesId = this.route.snapshot.params['seriesId'];
-    // const castId = this.route.snapshot.params['castId'];
     console.log("Cast Id:",castId);
     
     this.seriesService.deleteCast(seriesId,castId).subscribe(

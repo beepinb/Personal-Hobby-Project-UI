@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { CastDetailComponent } from './cast-detail/cast-detail.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    Ng2SearchPipeModule,
     RouterModule.forRoot([
       {
         path:"",

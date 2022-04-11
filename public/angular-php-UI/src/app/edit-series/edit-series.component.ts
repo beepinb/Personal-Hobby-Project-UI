@@ -11,19 +11,14 @@ import { Series } from '../series-list/series-list.component';
 })
 export class EditSeriesComponent implements OnInit {
 
-// @ViewChild('editSeriesForm')
+@ViewChild('editSeriesForm')
 editSeriesForm!:NgForm;
 series!:Series;
   constructor(private seriesData:SeriesDataService,private router:Router) { }
 
   ngOnInit(): void {
     this.series=this.seriesData.seriesGetter();
-    // console.log("Edit Series Form:",this.editSeriesForm);
-    // setTimeout(() => {
-    //   console.log("timeout form",this.editSeriesForm);
-  
-    //     this.editSeriesForm.setValue(this.series);
-    //   }, 0);
+ 
   }
 
   edit(editSeriesForm:NgForm):void{
